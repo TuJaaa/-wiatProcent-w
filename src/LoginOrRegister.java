@@ -5,23 +5,42 @@ public class LoginOrRegister implements Welcome {
     private String username;
 
     public void registerOrLogin() {
+        SqlQuery sqlq = new SqlQuery();
+        User user = new User();
+        Scanner sc = new Scanner(System.in);
         welcomeText();
         int choose = scn.nextInt();
+        int loginStatus = 0;
 
         switch (choose) {
             case 1:
-                // login
-                System.out.println("Enter your username: ");
-                username = scn.next();
-                System.out.println("Enter your password: ");
-                String user_password = scn.next();
+                System.out.println("Podaj login:");
+                user.setLogin(sc.next());
+                System.out.println("Podaj hasło:");
+                user.setPassword(sc.next());
+
+                user.setRole(sqlq.login(user.getLogin(), user.getPassword()));
+
+                if(!user.getRole().equals("false")) {
+                    System.out.println("Jesteś zalogowany");
+                    loginStatus=1;
+                }
+                else {
+                    System.out.println("Nie udało się zalogować");
+                }
                 break;
             case 2:
-                // register
-                System.out.println("Enter your username: ");
-                username = scn.next();
-                System.out.println("Enter your password: ");
-                String new_user_password = scn.next();
+                System.out.println("Podaj login:");
+                user.setLogin(sc.next());
+                System.out.println("Podaj hasło:");
+                user.setPassword(sc.next());
+
+                if(sqlq.register(user.getLogin(), user.getPassword())) {
+                    System.out.println("Konto zostało utworzone");
+                }
+                else {
+                    System.out.println("Nie można utworzyć konta");
+                }
                 break;
         }
     }
