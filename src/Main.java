@@ -1,8 +1,6 @@
-/**
- * @author Tomasz Buczyński
- */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        UI ui = new UI();
+        ui.ui();
     }
 }
