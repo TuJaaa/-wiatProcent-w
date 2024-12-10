@@ -9,7 +9,7 @@ public class UI implements Welcome {
 
         String username = LOR.getUsername();
 
-        welcomeText(username);
+        welcomeText();
         System.out.println("What would u like to do?");
         System.out.println("1 - See alcohol database 2 - Search for specific alcohol");
 
@@ -27,9 +27,5 @@ public class UI implements Welcome {
     @Override
     public void welcomeText() {
         System.out.println("WELCOME, USER!");
-    }
-
-    public void welcomeText(String username) {
-        System.out.println("WELCOME, " + username + "!");
     }
 }
